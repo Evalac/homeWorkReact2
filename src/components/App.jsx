@@ -13,7 +13,7 @@ class App extends Component {
   };
 
   render() {
-    this.test();
+    // this.test();
 
     return (
       <>
@@ -23,7 +23,17 @@ class App extends Component {
             return <button key={index}>{key}</button>;
           })}
           <p>Statistic</p>
-          <ul></ul>
+          <ul>
+            {Object.entries(this.state).map(([key, value], index) => {
+              const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+
+              return (
+                <li key={index}>
+                  {capitalizedKey}: {value}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </>
     );
