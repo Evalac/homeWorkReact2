@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { Statistic } from './Statistics/Statistics';
+import { FeedbackButton } from './FeedbackOptions/FeedbackButton';
 
 class App extends Component {
   state = {
@@ -37,32 +39,14 @@ class App extends Component {
       <>
         <div>
           <p>Please leave feedback</p>
-          {Object.keys(this.state).map((key, index) => {
-            return (
-              <button key={index} onClick={() => this.buttonClick(key)}>
-                {key}
-              </button>
-            );
-          })}
+          <FeedbackButton state={this.state} leaveFeedback={this.buttonClick} />
           <p>Statistic</p>
-          <ul>
-            {Object.entries(this.state).map(([key, value], index) => {
-              const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
-
-              return (
-                <li key={index}>
-                  {capitalizedKey}: {value}
-                </li>
-              );
-            })}
-            <li>
-              <p>Total: {totalFeedback}</p>
-            </li>
-            <li>
-              <p>Positive feedback: {percentagePositives}</p>
-            </li>
-          </ul>
         </div>
+        <Statistic
+          state={this.state}
+          totalFeedback={totalFeedback}
+          percentagePositives={percentagePositives}
+        />
       </>
     );
   }
