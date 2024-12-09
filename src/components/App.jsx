@@ -12,15 +12,37 @@ class App extends Component {
     console.log(Object.keys(this.state));
   };
 
+  buttonClick = key => {
+    console.log([key], key);
+
+    this.setState(prevState => ({ [key]: prevState[key] + 1 }));
+  };
+
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+  countPositiveFeedbackPercentage = () => {
+    const total = this.countTotalFeedback();
+
+    return total > 0 ? Math.round((this.state.good / total) * 100) : 0;
+  };
+
   render() {
     // this.test();
+
+    const totalFeedback = this.countTotalFeedback();
+    const percentagePositives = this.countPositiveFeedbackPercentage();
 
     return (
       <>
         <div>
           <p>Please leave feedback</p>
           {Object.keys(this.state).map((key, index) => {
-            return <button key={index}>{key}</button>;
+            return (
+              <button key={index} onClick={() => this.buttonClick(key)}>
+                {key}
+              </button>
+            );
           })}
           <p>Statistic</p>
           <ul>
@@ -33,6 +55,12 @@ class App extends Component {
                 </li>
               );
             })}
+            <li>
+              <p>Total: {totalFeedback}</p>
+            </li>
+            <li>
+              <p>Positive feedback: {percentagePositives}</p>
+            </li>
           </ul>
         </div>
       </>
