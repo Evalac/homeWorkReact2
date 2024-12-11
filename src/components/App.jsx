@@ -41,14 +41,14 @@ class App extends Component {
     return (
       <>
         <div>
-          <p>Please leave feedback</p>
+          <h1>Please leave feedback</h1>
           <FeedbackButton state={this.state} leaveFeedback={this.buttonClick} />
-          <p>Statistic</p>
         </div>
         <Statistic
           state={this.state}
           totalFeedback={totalFeedback}
           percentagePositives={percentagePositives}
+          notificationMessage="There is no feedback"
         />
       </>
     );
