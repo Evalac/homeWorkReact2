@@ -2,11 +2,15 @@ import { Component } from 'react';
 import { Statistic } from './Statistics/Statistics';
 import { FeedbackButton } from './FeedbackOptions/FeedbackButton';
 
+import { ValidationContact } from './Contact/ValidationContact/ValidationContact';
+
 class App extends Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
+    contacts: [],
+    name: '',
   };
 
   test = () => {
@@ -50,6 +54,7 @@ class App extends Component {
           percentagePositives={percentagePositives}
           notificationMessage="There is no feedback"
         />
+        <ValidationContact />
       </>
     );
   }
