@@ -9,8 +9,6 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    contacts: [],
-    name: '',
   };
 
   test = () => {
@@ -54,7 +52,6 @@ class App extends Component {
           percentagePositives={percentagePositives}
           notificationMessage="There is no feedback"
         />
-        <ValidationContact />
       </>
     );
   }
